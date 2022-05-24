@@ -155,6 +155,7 @@ grammar.add_rules(
         ),
         grammar.simple_expr,
     ),
+    unop_expression=Or(ast.Not(lexer.Not, NoBacktrack(), grammar.relation), grammar.relation),
     expression=Or(
         ast.BinOp(
             grammar.expression,
@@ -164,9 +165,9 @@ grammar.add_rules(
                 ast.Op.alt_or("or"),
             ),
             NoBacktrack(),
-            grammar.relation,
+            grammar.unop_expression,
         ),
-        grammar.relation,
+        grammar.unop_expression,
     ),
     quantified_expression=ast.QuantifiedExpression(
         "for",
@@ -321,6 +322,10 @@ grammar.add_rules(
         ),
         grammar.extended_simple_expr,
     ),
+    extended_unop_expression=Or(
+        ast.Not(lexer.Not, NoBacktrack(), grammar.extended_relation),
+        grammar.extended_relation,
+    ),
     extended_expression=Or(
         ast.BinOp(
             grammar.extended_expression,
@@ -330,9 +335,9 @@ grammar.add_rules(
                 ast.Op.alt_or("or"),
             ),
             NoBacktrack(),
-            grammar.extended_relation,
+            grammar.extended_unop_expression,
         ),
-        grammar.extended_relation,
+        grammar.extended_unop_expression,
     ),
     aspect=ast.Aspect(grammar.unqualified_identifier, Opt("=>", grammar.expression)),
     range_type_definition=ast.RangeTypeDef(

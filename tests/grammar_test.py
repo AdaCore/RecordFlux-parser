@@ -863,6 +863,46 @@ def test_expression_relation(string: str, expected: Dict[str, str]) -> None:
                 },
             },
         ),
+        (
+            "not Y",
+            {
+                "_kind": "NotNode",
+                "data": {
+                    "_kind": "Variable",
+                    "identifier": {
+                        "_kind": "ID",
+                        "name": {"_kind": "UnqualifiedID", "_value": "Y"},
+                        "package": None,
+                    },
+                },
+            },
+        ),
+        (
+            "X and not Y",
+            {
+                "_kind": "BinOp",
+                "left": {
+                    "_kind": "Variable",
+                    "identifier": {
+                        "_kind": "ID",
+                        "name": {"_kind": "UnqualifiedID", "_value": "X"},
+                        "package": None,
+                    },
+                },
+                "op": {"_kind": "OpAnd", "_value": "and"},
+                "right": {
+                    "_kind": "NotNode",
+                    "data": {
+                        "_kind": "Variable",
+                        "identifier": {
+                            "_kind": "ID",
+                            "name": {"_kind": "UnqualifiedID", "_value": "Y"},
+                            "package": None,
+                        },
+                    },
+                },
+            },
+        ),
     ],
 )
 def test_expression_boolean(string: str, expected: Dict[str, str]) -> None:
@@ -984,6 +1024,46 @@ def test_mathematical_expression(string: str, expected: Dict[str, str]) -> None:
                         }
                     ],
                     "identifier": {"_kind": "UnqualifiedID", "_value": "Y"},
+                },
+            },
+        ),
+        (
+            "not Y",
+            {
+                "_kind": "NotNode",
+                "data": {
+                    "_kind": "Variable",
+                    "identifier": {
+                        "_kind": "ID",
+                        "name": {"_kind": "UnqualifiedID", "_value": "Y"},
+                        "package": None,
+                    },
+                },
+            },
+        ),
+        (
+            "X and not Y",
+            {
+                "_kind": "BinOp",
+                "left": {
+                    "_kind": "Variable",
+                    "identifier": {
+                        "_kind": "ID",
+                        "name": {"_kind": "UnqualifiedID", "_value": "X"},
+                        "package": None,
+                    },
+                },
+                "op": {"_kind": "OpAnd", "_value": "and"},
+                "right": {
+                    "_kind": "NotNode",
+                    "data": {
+                        "_kind": "Variable",
+                        "identifier": {
+                            "_kind": "ID",
+                            "name": {"_kind": "UnqualifiedID", "_value": "Y"},
+                            "package": None,
+                        },
+                    },
                 },
             },
         ),

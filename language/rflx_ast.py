@@ -91,6 +91,11 @@ class Negation(Expr):
     data = Field(type=Expr)
 
 
+class Not(Expr):
+
+    data = Field(type=Expr)
+
+
 class BinOp(Expr):
     """Binary operation."""
 
