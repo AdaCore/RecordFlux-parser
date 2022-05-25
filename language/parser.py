@@ -155,7 +155,7 @@ grammar.add_rules(
         ),
         grammar.simple_expr,
     ),
-    unop_expression=Or(ast.Not(lexer.Not, NoBacktrack(), grammar.relation), grammar.relation),
+    unop_expression=Or(ast.Not(lexer.Not, grammar.relation), grammar.relation),
     expression=Or(
         ast.BinOp(
             grammar.expression,
@@ -323,7 +323,7 @@ grammar.add_rules(
         grammar.extended_simple_expr,
     ),
     extended_unop_expression=Or(
-        ast.Not(lexer.Not, NoBacktrack(), grammar.extended_relation),
+        ast.Not(lexer.Not, grammar.extended_relation),
         grammar.extended_relation,
     ),
     extended_expression=Or(
